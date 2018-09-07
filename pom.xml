@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.kn.bpa.lex</groupId>
+  <artifactId>camunda-local-process-extension</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <encoding>UTF-8</encoding>
+    <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+    <project.build.resourceEncoding>${encoding}</project.build.resourceEncoding>
+
+    <java.version>1.8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+
+    <lex-spring-boot.version>2.0.2.RELEASE</lex-spring-boot.version>
+    <camunda.version>7.9.0</camunda.version>
+    <camunda-bpm-spring-boot-starter.version>3.0.0</camunda-bpm-spring-boot-starter.version>
+    <swagger-springfox.version>2.6.1</swagger-springfox.version>
+
+    <findbugs.version>1.3.9</findbugs.version>
+    <immutables.version>2.4.6</immutables.version>
+    <lombok.version>1.16.12</lombok.version>
+  </properties>
+
+  <modules>
+    <module>core</module>
+    <module>example</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <!-- Import dependency management from Spring Boot -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${lex-spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.camunda.bpm.springboot</groupId>
+        <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+        <version>${camunda-bpm-spring-boot-starter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+      </dependency>
+
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+
+      <!-- Immutables for models -->
+      <dependency>
+        <groupId>org.immutables</groupId>
+        <artifactId>value</artifactId>
+        <version>${immutables.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.immutables</groupId>
+        <artifactId>serial</artifactId>
+        <version>${immutables.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.immutables</groupId>
+        <artifactId>gson</artifactId>
+        <version>${immutables.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- TODO just used for Nullable annotation ... -->
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${findbugs.version}</version>
+      </dependency>
+
+    </dependencies>
+
+  </dependencyManagement>
+
+</project>
