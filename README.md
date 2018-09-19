@@ -2,27 +2,29 @@
 
 ## How to start a lex process?
 
-1) Start activemq - `docker-compose up activemq`
+1) Start activemq - `docker-compose up activemq` and verify, that [activemq](http://localhost:8161/admin/) was started and login via `admin`/`admin`
 
 2) Start lex server - `mvn spring-boot:run -f example/testapplication-main`
 
 3) Start lex client - `mvn spring-boot:run -f example/testapplication-lex`
 
 4) GOTO [Swagger](http://localhost:9080/swagger-ui.html#!/lex-server-controller/startLexProcessUsingGET_1)
+of the global application 
 
-5) Use "DEKN_DEHAM_AE" as office to start the lex bridge
+5) Use "DEKN_DEHAM_AE" as office and your onw defined (unique) businessId to start the main process and trigger the LEX-bridge. 
+If you use another office, no LEX-process will be started. 
 
 ## And now?
 
 Both spring boot applications does also start a camunda cockpit:
 
-[Lex server camunda cockpit](http://localhost:9080/) (admin/admin)
+[Global camunda cockpit](http://localhost:9080/) (admin/admin)
 
-[Lex client camunda cockpit](http://localhost:10080/) (admin/admin)
+[Lex camunda cockpit](http://localhost:10080/) (admin/admin)
 
-On the server you can see the lex bridge and the lex proxy task for the lex process (LEX_ArrangeCustomsDE).
+On the global-application you can see the lex bridge and the lex proxy task for the lex process (LEX_ArrangeCustomsDE).
 
-On the client is the lex process (Lex Demo process for AE0100_LexBridge) which has already triggered the lex proxy task on server side.
+On the lex-application is the lex process (Lex Demo process for AE0100_LexBridge) which has already triggered the lex proxy task on global side.
 
 You can now use the tasklist on lex server to work on the lex proxy task. After completing it, the lex bridge and the lex process should also get finished.
 
