@@ -1,6 +1,7 @@
 # Camunda local process extension
 
 ## How to start a lex process?
+0) Build the project first `mvn clean install` on project root-level
 
 1) Start activemq - `docker-compose up activemq` and verify, that [activemq](http://localhost:8161/admin/) was started and login via `admin`/`admin`
 
