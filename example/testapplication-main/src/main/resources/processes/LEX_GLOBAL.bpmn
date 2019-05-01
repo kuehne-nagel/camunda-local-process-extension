@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.16.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.0">
   <bpmn:collaboration id="Collaboration_1cpwxyh">
     <bpmn:participant id="AE0000" name="Global customs handling" processRef="AE0000_GlobalLexProcess" />
   </bpmn:collaboration>
@@ -10,9 +10,12 @@
     <bpmn:sequenceFlow id="SequenceFlow_00nj3lv" sourceRef="AE0100_LexBridge" targetRef="EndEvent_0o2o0m8" />
     <bpmn:sequenceFlow id="SequenceFlow_1kvxquc" sourceRef="StartEvent_1" targetRef="SI0100G0010" />
     <bpmn:sequenceFlow id="SequenceFlow_0c5k77t" name="Yes" sourceRef="SI0100G0010" targetRef="AE0100_LexBridge">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${office.startsWith("DEKN")}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${lexClientApplicationId.startsWith("LEX_")}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:exclusiveGateway id="SI0100G0010" name="Lex required?" default="SequenceFlow_0fcddzn">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${lexApplicationGateway}" event="start" />
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1kvxquc</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0c5k77t</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_0fcddzn</bpmn:outgoing>
@@ -26,7 +29,6 @@
         <camunda:in businessKey="#{execution.processBusinessKey}" />
         <camunda:in variables="all" />
         <camunda:out variables="all" />
-        <camunda:executionListener delegateExpression="${lexApplicationGateway}" event="start" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0c5k77t</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_00nj3lv</bpmn:outgoing>

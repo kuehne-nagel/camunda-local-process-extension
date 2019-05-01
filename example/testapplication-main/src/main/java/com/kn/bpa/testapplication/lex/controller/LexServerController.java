@@ -2,6 +2,7 @@ package com.kn.bpa.testapplication.lex.controller;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.variable.VariableMap;
+import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.impl.VariableMapImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class LexServerController {
     @RequestParam(value = "office") final String office) {
 
     final VariableMap map = new VariableMapImpl();
-    map.put("office", office);
+    map.putValueTyped("office", Variables.stringValue(office, true));
     runtimeService.startProcessInstanceByKey("AE0000_GlobalLexProcess", businessId, map);
 
     return new ResponseEntity(HttpStatus.OK);

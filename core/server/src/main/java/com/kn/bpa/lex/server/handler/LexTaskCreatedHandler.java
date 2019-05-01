@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.variable.VariableMap;
-import org.camunda.bpm.engine.variable.impl.VariableMapImpl;
+import org.camunda.bpm.engine.variable.Variables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,10 +34,10 @@ public class LexTaskCreatedHandler implements Consumer<LexTaskCreatedEvent> {
   public void accept(final LexTaskCreatedEvent lexTaskCreatedEvent) {
     log.info("Starting lex task process via sending {} to bridge", lexTaskCreatedEvent, lexTaskCreatedEvent.getBridgeProcessId());
 
-    final VariableMap variables = new VariableMapImpl();
-    variables.putValue(VARIABLE.LEX_TASK_TYPE_ID, lexTaskCreatedEvent.getTaskTypeId());
-    variables.putValue(VARIABLE.LEX_CLIENT_APPLICATION_ID, lexTaskCreatedEvent.getClientApplicationId());
-    variables.putValue(VARIABLE.LEX_CLIENT_TASK_ID, lexTaskCreatedEvent.getClientTaskId());
+    final VariableMap variables = Variables.createVariables()
+      .putValueTyped(VARIABLE.LEX_TASK_TYPE_ID, Variables.stringValue(lexTaskCreatedEvent.getTaskTypeId(), true))
+      .putValueTyped(VARIABLE.LEX_CLIENT_APPLICATION_ID, Variables.stringValue(lexTaskCreatedEvent.getClientApplicationId(), true))
+      .putValueTyped(VARIABLE.LEX_CLIENT_TASK_ID, Variables.stringValue(lexTaskCreatedEvent.getClientTaskId(), true));
 
     runtimeService.createMessageCorrelation(MESSAGE.START_LEX_TASK_PROCESS)
       .processInstanceId(lexTaskCreatedEvent.getBridgeProcessId())

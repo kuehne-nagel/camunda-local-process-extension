@@ -19,7 +19,7 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
 
     <lex-spring-boot.version>2.0.2.RELEASE</lex-spring-boot.version>
-    <camunda.version>7.9.0</camunda.version>
+    <camunda.version>7.10.0</camunda.version>
     <camunda-bpm-spring-boot-starter.version>3.0.0</camunda-bpm-spring-boot-starter.version>
     <swagger-springfox.version>2.6.1</swagger-springfox.version>
 

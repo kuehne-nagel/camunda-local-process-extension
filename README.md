@@ -10,10 +10,14 @@
 3) Start lex client - `mvn spring-boot:run -f example/testapplication-lex`
 
 4) GOTO [Swagger](http://localhost:9080/swagger-ui.html#!/lex-server-controller/startLexProcessUsingGET_1)
-of the global application 
+of the global application to generate a proxy task
 
-5) Use "DEKN_DEHAM_AE" as office and your onw defined (unique) businessId to start the main process and trigger the LEX-bridge. 
+5) GOTO [Swagger](http://localhost:9080/lex-tasktype-command/createLexTaskType?taskTypeId=ArrangeCustomsDE&taskTypeName=Arrange%20Customs%20for%20DE)
+of the global application to start a global business process 
+
+6) Use "DEKN_DEHAM_AE" as office and your own defined (unique) businessId to start the main process and trigger the LEX-bridge. 
 If you use another office, no LEX-process will be started. 
+For further details, please refer to the implementation `LexApplicationGateway` of the gateway within the global process.
 
 ## And now?
 
@@ -37,7 +41,7 @@ To see the history you have to use the enterprise version of camunda:
 
 Instead of `camunda-bpm-spring-boot-starter-webapp` use `camunda-bpm-spring-boot-starter-webapp-ee`
 
-Set `camunda.version` to `7.9.2-ee`
+Set `camunda.version` to `7.10.5-ee`
 
 Add this to dependency management of root pom: 
 
@@ -65,4 +69,3 @@ Activemq monitoring
 ## Maintainer
 
 * [Stefan Becke](https://github.com/stefanbecke) - [Stefan.Becke@kuehne-nagel.com](Stefan.Becke@kuehne-nagel.com) - [Kühne + Nagel](https://home.kuehne-nagel.com/)
-* [Patrick Schalk](https://github.com/pschalk) - [Patrick.Schalk@holisticon.de](Patrick.Schalk@holisticon.de) - [Holisticon AG](http://www.holisticon.de/)
