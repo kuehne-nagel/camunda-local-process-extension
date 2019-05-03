@@ -36,7 +36,7 @@ public class LexTaskCreatedHandler implements Consumer<LexTaskCreatedEvent> {
 
     final VariableMap variables = Variables.createVariables()
       .putValueTyped(VARIABLE.LEX_TASK_TYPE_ID, Variables.stringValue(lexTaskCreatedEvent.getTaskTypeId(), true))
-      .putValueTyped(VARIABLE.LEX_CLIENT_APPLICATION_ID, Variables.stringValue(lexTaskCreatedEvent.getClientApplicationId(), true))
+      .putValueTyped(VARIABLE.LEX_CLIENT_APPLICATION_ID, Variables.stringValue(lexTaskCreatedEvent.getClientApplicationId(), false))
       .putValueTyped(VARIABLE.LEX_CLIENT_TASK_ID, Variables.stringValue(lexTaskCreatedEvent.getClientTaskId(), true));
 
     runtimeService.createMessageCorrelation(MESSAGE.START_LEX_TASK_PROCESS)

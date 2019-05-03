@@ -37,7 +37,7 @@ public class LexApplicationGateway implements JavaDelegate {
 
     log.info("Lex application is " + lexApplicationID + " for businessId " + execution.getBusinessKey() + " and activity " + execution.getActivityInstanceId());
     VariableMap variables = Variables.createVariables()
-        .putValueTyped(LEX_CLIENT_APPLICATION_ID, Variables.stringValue(lexApplicationID, true));
+        .putValueTyped(LEX_CLIENT_APPLICATION_ID, Variables.stringValue(lexApplicationID, false));
     execution.setVariables(variables);
   }
 
