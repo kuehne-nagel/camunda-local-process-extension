@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="definitions_0ykaw8o" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="LEX_DECISION" name="LEX-DECISION">
+    <decisionTable id="decisionTable" hitPolicy="FIRST">
+      <input id="InputClause_1ewkjvh" label="Office Name" camunda:inputVariable="">
+        <inputExpression id="LiteralExpression_1anm0ul" typeRef="string">
+          <text>office</text>
+        </inputExpression>
+      </input>
+      <output id="output1" label="LEX Application ID" name="lexClientApplicationId" typeRef="string" />
+      <rule id="row-366595130-1">
+        <inputEntry id="UnaryTests_07k4alm">
+          <text>"DEKN_DEHAM"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0gyt60l">
+          <text>"LEX_EMEA_DE"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-366595130-2">
+        <inputEntry id="UnaryTests_0m7ploq">
+          <text>"DEKN_DEHAM_AE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0c5d24z">
+          <text>"LEX_EMEA_DE"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
