@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.0">
+  <bpmn:collaboration id="Collaboration_1cpwxyh">
+    <bpmn:participant id="AE9999" name="Global shipment" processRef="AE9999_GlobalShipmentProcess" />
+  </bpmn:collaboration>
+  <bpmn:process id="AE9999_GlobalShipmentProcess" name="Global Shipment Process" isExecutable="true" camunda:versionTag="1" camunda:historyTimeToLive="7">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0i462kp</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Task_0oy4vxc" name="Book Transport" camunda:delegateExpression="${bookTransportDelegate}">
+      <bpmn:incoming>SequenceFlow_0i462kp</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03nwa3h</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ServiceTask_10lhgbq" name="Create Transport Documents" camunda:delegateExpression="${createTransportDocumentsDelegate}">
+      <bpmn:incoming>SequenceFlow_03nwa3h</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1xplqc8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0i462kp" sourceRef="StartEvent_1" targetRef="Task_0oy4vxc" />
+    <bpmn:sequenceFlow id="SequenceFlow_03nwa3h" sourceRef="Task_0oy4vxc" targetRef="ServiceTask_10lhgbq" />
+    <bpmn:sequenceFlow id="SequenceFlow_19gyh52" sourceRef="CallActivity_10amk55" targetRef="EndEvent_0o2o0m8" />
+    <bpmn:sequenceFlow id="SequenceFlow_1xplqc8" sourceRef="ServiceTask_10lhgbq" targetRef="CallActivity_10amk55" />
+    <bpmn:endEvent id="EndEvent_0o2o0m8">
+      <bpmn:incoming>SequenceFlow_19gyh52</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:callActivity id="CallActivity_10amk55" name="Perform &#10;Customs handling&#10;&#10;" calledElement="AE0000_GlobalCustomsProcess" camunda:calledElementBinding="deployment">
+      <bpmn:extensionElements>
+        <camunda:in businessKey="#{execution.processBusinessKey}" />
+        <camunda:in variables="all" />
+        <camunda:out variables="all" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1xplqc8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19gyh52</bpmn:outgoing>
+    </bpmn:callActivity>
+  </bpmn:process>
+  <bpmn:message id="Message_0ojao8j" name="message_lexProcessCompleted" />
+  <bpmn:message id="Message_04pcidh" name="message_startLexTaskProcess" />
+  <bpmn:message id="Message_1xw3bac" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1cpwxyh">
+      <bpmndi:BPMNShape id="Participant_1opqtfs_di" bpmnElement="AE9999">
+        <dc:Bounds x="197" y="132" width="580" height="145" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="260" y="194" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="481" y="202" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0o2o0m8_di" bpmnElement="EndEvent_0o2o0m8">
+        <dc:Bounds x="708" y="194" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="823" y="206" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0i462kp_di" bpmnElement="SequenceFlow_0i462kp">
+        <di:waypoint x="296" y="212" />
+        <di:waypoint x="322" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0b97e67_di" bpmnElement="Task_0oy4vxc">
+        <dc:Bounds x="322" y="172" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_10lhgbq_di" bpmnElement="ServiceTask_10lhgbq">
+        <dc:Bounds x="449" y="172" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_03nwa3h_di" bpmnElement="SequenceFlow_03nwa3h">
+        <di:waypoint x="422" y="212" />
+        <di:waypoint x="449" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="CallActivity_10amk55_di" bpmnElement="CallActivity_10amk55">
+        <dc:Bounds x="583" y="172" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_19gyh52_di" bpmnElement="SequenceFlow_19gyh52">
+        <di:waypoint x="683" y="212" />
+        <di:waypoint x="708" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1xplqc8_di" bpmnElement="SequenceFlow_1xplqc8">
+        <di:waypoint x="549" y="212" />
+        <di:waypoint x="583" y="212" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

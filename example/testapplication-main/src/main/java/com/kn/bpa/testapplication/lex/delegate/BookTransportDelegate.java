@@ -8,10 +8,10 @@ package com.kn.bpa.testapplication.lex.delegate;
 
 @Component
 @Slf4j
-public class SubmitCustomsDocumentsDelegate implements JavaDelegate {
+public class BookTransportDelegate implements JavaDelegate {
 
   @Override
   public void execute(final DelegateExecution execution) {
-    log.info("Submit customs documents to german customs service ...");
+    log.info("Booked transport...");
   }
 }

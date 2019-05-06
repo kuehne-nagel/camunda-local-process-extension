@@ -25,7 +25,7 @@ public class LexServerController {
     this.runtimeService = runtimeService;
   }
 
-  @RequestMapping(value = "/startGlobalProcess", method = RequestMethod.GET)
+  @RequestMapping(value = "/startGlobalShipmentProcess", method = RequestMethod.GET)
   public ResponseEntity<?> startLexProcess(
     @ApiParam(required = true) //
     @RequestParam(value = "businessId") final String businessId,
@@ -34,7 +34,7 @@ public class LexServerController {
 
     final VariableMap map = new VariableMapImpl();
     map.putValueTyped("office", Variables.stringValue(office, true));
-    runtimeService.startProcessInstanceByKey("AE0000_GlobalLexProcess", businessId, map);
+    runtimeService.startProcessInstanceByKey("AE9999_GlobalShipmentProcess", businessId, map);
 
     return new ResponseEntity(HttpStatus.OK);
   }

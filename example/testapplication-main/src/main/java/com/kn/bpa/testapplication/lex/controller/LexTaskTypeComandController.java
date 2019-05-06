@@ -42,7 +42,8 @@ public class LexTaskTypeComandController {
         .startEvent(taskTypeId + START_SUFFIX).name(taskTypeName + " Started")
         .userTask(taskTypeId).name(taskTypeName)
         .endEvent(taskTypeId + END_EVENT_SUFFIX)
-        .camundaExecutionListenerDelegateExpression(ExecutionListener.EVENTNAME_END, "${lexTaskCompletedDelegate}")
+        .camundaExecutionListenerDelegateExpression(ExecutionListener.EVENTNAME_END,
+          "${lexTaskCompletedDelegate}")
         .name(taskTypeName + " Ended")
         .messageEventDefinition()
         .messageEventDefinitionDone()

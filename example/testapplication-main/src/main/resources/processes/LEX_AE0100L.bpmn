@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.16.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.0">
   <bpmn:collaboration id="Collaboration_1cpwxyh">
-    <bpmn:participant id="AE0100B" name="LEX Bridge for Cusoms Handling Germany" processRef="AE0100_LexBridge" />
-    <bpmn:participant id="Participant_0m2kxmy" name="LEX Germany" processRef="REMOTE_LEX" />
+    <bpmn:participant id="AE0100B" name="LEX Bridge for Cusoms Handling" processRef="AE0100_LexBridge" />
+    <bpmn:participant id="Participant_0m2kxmy" name="LEX Application" processRef="REMOTE_LEX" />
     <bpmn:messageFlow id="MessageFlow_04rw2y2" name="(1) start LEX process (jms)" sourceRef="AE0100L101" targetRef="Participant_0m2kxmy" />
     <bpmn:messageFlow id="MessageFlow_0d6dche" name="(2) LEX created task" sourceRef="Participant_0m2kxmy" targetRef="StartEvent_13fj1mp">
       <bpmn:documentation>Weill fail, if the message can not be correlate e.g. lex-bridge was already canceled.</bpmn:documentation>

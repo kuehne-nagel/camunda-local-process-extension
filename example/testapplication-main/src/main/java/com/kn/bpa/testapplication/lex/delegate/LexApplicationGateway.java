@@ -24,7 +24,7 @@ public class LexApplicationGateway implements JavaDelegate {
   private static final String DMN_FILE = "LEX_DECISION";
   private static final String VAR_OFFICE = "office";
   private static final String VAR_LEX_APPLICATION_ID = "lexClientApplicationId";
-  private static final String DMN_FALBACK = "UNDEFINED";
+  private static final String DMN_FALLBACK = "UNDEFINED";
 
 
   @Autowired
@@ -49,7 +49,7 @@ public class LexApplicationGateway implements JavaDelegate {
 
   private String evaluateAssignmentDecisionTableWithContext(final Map<String, Object> context, final String dmnKey, final String resultName) {
     final Map<String, Object> result = decisionService.evaluateDecisionTableByKey(dmnKey, context).getSingleResult();
-    String resultStr =  DMN_FALBACK;
+    String resultStr =  DMN_FALLBACK;
     if (result != null && result.containsKey(resultName)) {
       resultStr = (String) result.get(resultName);
     }
